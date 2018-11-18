@@ -937,7 +937,7 @@ var GeoQuery = function (firebaseRef, queryCriteria) {
       _firebaseRef.child(key).once("value", function(snapshot) {
         var location = snapshot.val() === null ? null : decodeGeoFireObject(snapshot.val());
         var geohash = (location !== null) ? encodeGeohash(location) : null;
-        var customData = getCustomData(locationDataSnapshot);        
+        var customData = getCustomData(locationDataSnapshot);
         // Only notify observers if key is not part of any other geohash query or this actually might not be
         // a key exited event, but a key moved or entered event. These events will be triggered by updates
         // to a different query
@@ -1170,7 +1170,7 @@ var GeoQuery = function (firebaseRef, queryCriteria) {
         var key = keys[i];
         var locationDict = _locationsTracked[key];
         if (typeof locationDict !== "undefined" && locationDict.isInQuery) {
-          callback(key, locationDict.location, locationDict.distanceFromCenter);
+          callback(key, locationDict.location, locationDict.distanceFromCenter, locationDict.customData);
         }
       }
     }
